@@ -67,6 +67,8 @@ void	white_screen_image(t_data *data, int w, int h)
 	}
 }
 
+
+
 void draw_line_image(t_data *data, t_point p1, t_point p2, int color)
 {
 	double deltaX = p2.x - p1.x; // 10
@@ -111,8 +113,16 @@ int	main(void)
 								&img.endian);
 	white_screen_image(&img, 640, 480);
 
-	// draw_reg_image(&img, (t_point){10, 10}, (t_point){40, 100}, 0xDD0000);
-	// draw_reg_image(&img, (t_point){50, 50}, (t_point){100, 100}, 0xDD0000);
+	// p1.x = 10;
+	// p1.y = 10;
+	// p2.x = 200;
+	// p2.y = 300;
+	// draw_line_image(&img, (t_point){10, 10}, p2, 0xFF0000);
+	// draw_line_image(&img, (t_point){40, 100}, p2, 0x990000);
+	// draw_reg_image(&img, p1, p2);
+
+	draw_reg_image(&img, (t_point){10, 10}, (t_point){40, 100}, 0xDD0000);
+	draw_reg_image(&img, (t_point){50, 50}, (t_point){100, 100}, 0xDD0000);
 
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 
