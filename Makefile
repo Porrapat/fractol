@@ -22,13 +22,8 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-# %.o: %.c
-# 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
-
-# $(NAME): $(OBJS)
-# 	$(CC) $(OBJS) $(CFLAGSMLX) -o $(NAME)
-
 $(NAME):
+# $(MAKE) -C ./minilibx-linux
 	$(CC) $(CFLAGS) $(SRC) -o $@ $(CFLAGSMLX)
 
 clean:

@@ -1,4 +1,10 @@
-#include "mlx.h"
+#include <mlx.h>
+#include <stdio.h>
+
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
 
 typedef struct	s_data {
 	void	*img;
@@ -8,6 +14,22 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+int	white_screen(void *mlx, void *win, int w, int h)
+{
+	int	x;
+	int	y;
+
+	x = w;
+	while (x--)
+	{
+		y = h;
+		while (y--)
+		{
+			mlx_pixel_put(mlx,win,x,y,0xFFFFFF);
+		}
+	}
+}
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -16,80 +38,20 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	color_map_1(void *mlx, void *win,int w,int h)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	x = w;
-	while (x--)
-	{
-		y = h;
-		while (y--)
-		{
-			color = (x*255)/w+((((w-x)*255)/w)<<16)+(((y*255)/h)<<8);
-			mlx_pixel_put(mlx,win,x,y,color);
-		}
-	}
-}
-
-// color_map_1(win1,WIN1_SX,WIN1_SY);
-
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_vars	vars;
+    t_data	img;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 600, 600, "Fractol");
-	img.img = mlx_new_image(mlx, 600, 600);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
+	white_screen(vars.mlx,vars.win,640,480);
 
-	int x;
-	int y;
-
-	x = 1;
-	y = x;
-	while(x < 600)
-	{
-		mlx_pixel_put(mlx,mlx_win,x,y,0x00FFFF00);
-		x++;
-		y = x;
-	}
-	mlx_loop(mlx);
-	
-	// mlx_pixel_put(mlx,mlx_win,2,2,0x00FF0000);
-	// mlx_pixel_put(mlx,mlx_win,3,3,0x00FF0000);
-	// mlx_pixel_put(mlx,mlx_win,4,4,0x00FF0000);
-	// mlx_pixel_put(mlx,mlx_win,5,5,0x00FF0000);
-	
-
-	// color_map_1(mlx,mlx_win,1024,768);
-	// int x;
-	// int y;
-
-	// x = 0;
-	// y = 0;
-	// while(x < 1024)
-	// {
-	// 	while(y < 768)
-	// 	{
-	// 		my_mlx_pixel_put(&img, x, y, 0x0000FFFF);
-	// 		y++;
-	// 	}
-	// 	x++;
-	// }
-	// my_mlx_pixel_put(&img, 5, 5, 0x000000FF);
-	// my_mlx_pixel_put(&img, 6, 6, 0x000000FF);
-	// my_mlx_pixel_put(&img, 7, 7, 0x000000FF);
-	// my_mlx_pixel_put(&img, 8, 8, 0x000000FF);
-	// mlx_pixel_put(mlx, mlx_win, 5, 5, 0x00FF0000);
-	// mlx_pixel_put(mlx, mlx_win, 6, 6, 0x00FF0000);
-	// mlx_pixel_put(mlx, mlx_win, 7, 7, 0x00FF0000);
-	// mlx_pixel_put(mlx, mlx_win, 8, 8, 0x00FF0000);
-	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	
+    // img.img = mlx_new_image(vars.mlx, 200, 200);
+    // my_mlx_pixel_put(&img, 10, 10, 0x0000FF00);
+    // my_mlx_pixel_put(&img, 11, 10, 0x0000FF00);
+    // my_mlx_pixel_put(&img, 12, 10, 0x0000FF00);
+    // my_mlx_pixel_put(&img, 13, 10, 0x0000FF00);
+    // mlx_put_image_to_window(vars.mlx, vars.win, img.img, 100, 100);
+	mlx_loop(vars.mlx);
 }
