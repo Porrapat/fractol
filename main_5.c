@@ -1,8 +1,5 @@
 #include <mlx.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <time.h>
 #include <math.h>
 
 typedef struct	s_vars {
@@ -140,7 +137,7 @@ void circleBres(t_data *data, int xc, int yc, int r, int color)
         // delay(50);
     }
 }
-
+ 
 
 int	main(void)
 {
@@ -148,7 +145,6 @@ int	main(void)
 	t_data	img;
 	t_point p1;
 	t_point p2;
-	int	i;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
@@ -158,29 +154,12 @@ int	main(void)
 								&img.endian);
 	white_screen_image(&img, 640, 480);
 
-	srand(time(NULL));
-	for(i = 0; i < 100; i++)
-	{
-		circleBres(&img, 200 + (rand() % 100), 200 + (rand() % 100), 20 + (rand() % 50), 0x00AA33);    // function call
-	}
 
+	circleBres(&img, 100, 100, 50);    // function call
 	// draw_reg_image(&img, (t_point){10, 10}, (t_point){40, 100}, 0xDD0000);
 	// draw_reg_image(&img, (t_point){50, 50}, (t_point){100, 100}, 0xDD0000);
 
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-
-	while(1)
-	{
-		sleep(2);
-		white_screen_image(&img, 640, 480);
-		srand(time(NULL));
-		for(i = 0; i < 100; i++)
-		{
-			circleBres(&img, 200 + (rand() % 100), 200 + (rand() % 100), 20 + (rand() % 50), 0x00AA33);    // function call
-		}
-		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	}
-	// mlx_loop_hook();
 
 	mlx_loop(vars.mlx);
 }
