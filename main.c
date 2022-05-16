@@ -42,53 +42,61 @@ int	create_trgb(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-// To recursively find the end value
-// of the passed point till the pixel
-// goes out of the bounded region
-// or the maximum depth is reached.
-int julia_point(t_vars *vars,
-				float x, float y,
-                int r, int depth,
-                int max,
-                double _Complex c,
-                double _Complex z)
+
+// Recursive function to provide the iterative every 100th
+// f^n (0) for every pixel on the screen.
+int Mandle(t_vars	*vars, double _Complex c, double _Complex t, int counter)
 {
-    if (cabs(z) > r) {
-        // putpixel(x, y,
-        //          COLOR(255 - 255 * ((max - depth) * (max - depth)) % (max * max),
-        //                0, 0));
-		mlx_pixel_put(vars->mlx, vars->win, x, y,
-                 create_trgb(255 - 255 * ((max - depth) * (max - depth)) % (max * max),
-                       0, 0));
-        depth = 0;
-    }
-    if (sqrt(pow((x - X / 2), 2)
-             + pow((y - Y / 2), 2))
-        > Y / 2) {
-        mlx_pixel_put(vars->mlx, vars->win,x, y, 0);
-    }
-    if (depth < max / 4) {
+	// counter = 0;
+	// t = 0;
+    // To eliminate out of bound values.
+    if (cabs(t) > 4) {
+        // putpixel(creal(c) * Y / 2 + X / 2,
+        //          cimag(c) * Y / 2 + Y / 2,
+        //          COLOR(128 - 128 * cabs(t) / cabs(c),
+        //                128 - 128 * cabs(t) / cabs(c),
+        //                128 - 128 * cabs(t) / cabs(c)));
+        mlx_pixel_put(vars->mlx, vars->win, creal(c) * Y / 2 + X / 2,
+                 cimag(c) * Y / 2 + Y / 2,
+                 create_trgb(128 - 128 * cabs(t) / cabs(c),
+                       128 - 128 * cabs(t) / cabs(c),
+                       128 - 128 * cabs(t) / cabs(c)));
         return 0;
     }
-    julia_point(vars,x, y, r,
-                depth - 1, max,
-                c, cpow(z, 2) + c);
+  
+    // To put about the end of the fractal,
+    // the higher the value of the counter,
+    // The more accurate the fractal is generated,
+    // however, higher values cause
+    // more processing time.
+    if (counter == 100) {
+        mlx_pixel_put(vars->mlx, vars->win, creal((c)) * Y / 2 + X / 2,
+                 cimag((c)) * Y / 2 + Y / 2,
+                 create_trgb(255 * (cabs((t * t))
+                              / cabs((t - c) * c)),
+                       0, 0));
+        return 0;
+    }
+  
+    // recursively calling Mandle with increased counter
+    // and passing the value of the squares of t into it.
+    Mandle(vars, c, cpow(t, 2) + c, counter + 1);
+  
+    return 0;
 }
   
-// To select the points in a Julia set.
-void juliaset(t_vars *vars, int depth, double _Complex c, int r, int detail)
+int MandleSet(t_vars	*vars)
 {
-    for (float x = X / 2 - Y / 2; x < X / 2 + Y / 2; x += detail) {
-        for (float y = 0; y < Y; y += detail) {
-            julia_point(vars, x, y, r,
-                        depth, depth, c,
-                        (2 * r * (x - X / 2) / Y)
-                            + (2 * r * (y - Y / 2) / Y)
-                                  * _Complex_I);
+    for (double x = -2; x < 2; x += 0.0015) {
+        for (double y = -1; y < 1; y += 0.0015) {
+
+            // printf("%.2f + %.2f\n",x,y );
+            double _Complex temp = x + y * _Complex_I;
+            Mandle(vars, temp, 0, 0);
         }
     }
+    return 0;
 }
-  
 
 int	main(void)
 {
@@ -105,16 +113,7 @@ int	main(void)
 	// my_mlx_pixel_put(&img, 10, 10, 0xFF0000);
 	// mlx_put_image_to_window(vars.mlx, vars.win, &img, 1, 1);
 	// printf("Hello");
-	// MandleSet(&vars);
-	// juliaset(&vars, 0, 0, 0, 0);
-	// juliaset(&vars, 0, 0, 0, 0);
-
-	int depth = 100, r = 2, detail = 1;
-  
-    // Initial value for Julia
-    // set taken by my personal preference.
-    double _Complex c = 0.282 - 0.58 * _Complex_I;
-	juliaset(&vars, depth, c, r, detail);
+	MandleSet(&vars);
 
 	mlx_loop(vars.mlx);
 }
