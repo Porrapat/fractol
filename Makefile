@@ -12,8 +12,10 @@
 
 NAME		=	fractol
 CC			=	gcc
-CFLAGS		=	-Ofast 
-CFLAGSMLX	=  -Lminilibx-linux -Iminilibx-linux -Imlx -lmlx -lXext -lX11 -lm -lbsd 
+# CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	
+CFLAGSMLX	=  -Lminilibx-linux -Iminilibx-linux -lmlx -lXext -lX11
+CFLAGSMORE	=  -lm -lbsd
 
 SRC_DIR		=	srcs
 SRC			=	main.c
@@ -24,7 +26,7 @@ all: $(NAME)
 
 $(NAME):
 # $(MAKE) -C ./minilibx-linux
-	$(CC) $(CFLAGS) $(SRC) -o $@ $(CFLAGSMLX)
+	$(CC) $(CFLAGS) $(SRC) -o $@ $(CFLAGSMLX) $(CFLAGSMORE)
 
 clean:
 	rm -f *.o
