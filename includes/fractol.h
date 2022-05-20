@@ -31,4 +31,7 @@ typedef struct s_complex {
 	double	im;
 }	t_complex;
 
+t_complex	complex_mult(t_complex a, t_complex b);
+t_complex	complex_pow(t_complex a, int pow);
+
 #endif
