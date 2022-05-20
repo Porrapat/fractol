@@ -12,10 +12,12 @@
 
 NAME		=	fractol
 CC			=	gcc
-# CFLAGS		=	-Wall -Werror -Wextra
-CFLAGS		=	
+
+INCLUDE		=	includes
+
+CFLAGS		=	-Wall -Werror -Wextra
 CFLAGSMLX	=  -Lminilibx-linux -Iminilibx-linux -lmlx -lXext -lX11
-CFLAGSMORE	=  -lm -lbsd
+CFLAGSMORE	=  -lm -lbsd -I$(INCLUDE)
 
 SRC_DIR		=	srcs
 SRC			=	$(SRC_DIR)/fractol.c
@@ -33,6 +35,10 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
+norm:
+	norminette srcs/fractol.c
+	norminette includes/fractol.h
 
 re: fclean all
 
