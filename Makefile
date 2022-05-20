@@ -18,7 +18,7 @@ CFLAGSMLX	=  -Lminilibx-linux -Iminilibx-linux -lmlx -lXext -lX11
 CFLAGSMORE	=  -lm -lbsd
 
 SRC_DIR		=	srcs
-SRC			=	main.c
+SRC			=	$(SRC_DIR)/fractol.c
 
 OBJS = $(SRCS:.c=.o)
 
