@@ -13,15 +13,22 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 # include "mlx.h"
+
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
-}				t_vars;
+}	t_vars;
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+typedef struct s_complex {
+	double	re;
+	double	im;
+}	t_complex;
 
 #endif
