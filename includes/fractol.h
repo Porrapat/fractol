@@ -47,9 +47,9 @@ typedef struct s_data {
 }				t_data;
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int			white_screen(void *mlx, void *win, int w, int h);
 void		white_screen_image(t_data *data, int w, int h);
 void		draw_line_image(t_data *data, t_point p1, t_point p2, int color);
+int			white_screen(void *mlx, void *win, int w, int h);
 
 t_complex	complex_add(t_complex a, t_complex b);
 t_complex	complex_mult(t_complex a, t_complex b);
