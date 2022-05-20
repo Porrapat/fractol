@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetchda <ppetchda@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                              +#+#+#+#+#+     +#+           */
-/*   Created: 2022/05/19 20:13:59 by ppetchda          #+#    #+#             */
-/*   Updated: 2022/05/19 20:18:35 by ppetchda         ###   ########.fr       */
+/*   Created: 2022/03/13 20:13:59 by ppetchda          #+#    #+#             */
+/*   Updated: 2022/03/13 20:18:35 by ppetchda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdio.h>
 # include <stdlib.h>
-# include <math.h>
-# include "mlx.h"
+# include <unistd.h>
 # include "libft.h"
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-}	t_vars;
-
-typedef struct s_complex {
-	double	re;
-	double	im;
-}	t_complex;
-
-t_complex	complex_add(t_complex a, t_complex b);
-t_complex	complex_mult(t_complex a, t_complex b);
-t_complex	complex_pow(t_complex a, int pow);
-void		complex_print(t_complex a);
-
+size_t		ft_strlen(const char *s);
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char		*ft_strmycat(char *s1, char *s2);
+char		*get_next_line(int fd);
 #endif

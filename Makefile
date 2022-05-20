@@ -17,7 +17,7 @@ INCLUDE		=	includes
 
 CFLAGS		=	-Wall -Werror -Wextra
 CFLAGSMLX	=  -Lminilibx-linux -Iminilibx-linux -lmlx -lXext -lX11
-CFLAGSMORE	=  -lm -lbsd -I$(INCLUDE)
+CFLAGSMORE	=  -lm -lbsd -I$(INCLUDE) -lft -Llibft -Ilibft
 
 SRC_DIR		=	srcs
 SRC			=	$(SRC_DIR)/fractol.c \
@@ -29,15 +29,19 @@ all: $(NAME)
 
 $(NAME):
 # $(MAKE) -C ./minilibx-linux
+	@$(MAKE) -C ./libft
 	$(CC) $(CFLAGS) $(SRC) -o $@ $(CFLAGSMLX) $(CFLAGSMORE)
 
 clean:
+	@$(MAKE) -C ./libft clean
 	rm -f *.o
 
 fclean: clean
+	@$(MAKE) -C ./libft fclean
 	rm -f $(NAME)
 
 norm:
+	norminette srcs/math.c
 	norminette srcs/fractol.c
 	norminette includes/fractol.h
 
