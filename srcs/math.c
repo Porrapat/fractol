@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetchda <ppetchda@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                              +#+#+#+#+#+     +#+           */
@@ -12,23 +12,27 @@
 
 #include "fractol.h"
 
-int	main(void)
+t_complex	complex_mult(t_complex a, t_complex b)
 {
-	t_vars	vars;
+	t_complex	result;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
-	mlx_loop(vars.mlx);
-	return (0);
+	result.re = a.re * b.re - a.im * b.im;
+	result.im = a.im * b.re + a.re * b.im;
+	return (result);
 }
 
-	// do complex pow
-	// check argument
-	// do grid system
-	// ...
+t_complex	complex_pow(t_complex a, int pow)
+{
+	t_complex	result;
+	int			i;
 
-	// t_complex z;
-	// z.re = 1;
-	// z.im = 2;
-
-	// printf("%.2f %.2fi\n", z.re, z.im);
+	i = 2;
+	result.re = a.re;
+	result.im = a.im;
+	while(i <= pow)
+	{
+		result = complex_mult(result, a);
+		i++;
+	}
+	return (result);
+}
