@@ -14,11 +14,13 @@
 
 void	do_mandelbrot()
 {
-	// printf("mandelbrot\n");
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
+
+	// draw_grid_system(vars);
+
 	mlx_loop(vars.mlx);
 }
 
@@ -26,7 +28,6 @@ void	check_fractal(char **argv)
 {
 	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot")))
 		do_mandelbrot();
-		// printf("mandelbrot\n");
 	else if (!ft_strncmp(argv[1], "julia", ft_strlen("julia")))
 		printf("julia\n");
 	else if (!ft_strncmp(argv[1], "burning-ship", ft_strlen("burning-ship")))

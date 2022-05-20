@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   grid_system.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetchda <ppetchda@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                              +#+#+#+#+#+     +#+           */
@@ -10,39 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "fractol.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include "mlx.h"
-# include "libft.h"
+void	draw_grid_system(t_vars vars)
+{
+	int	w;
+	// int	h;
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+	w = 0;
+	while (w < WIN_WIDTH)
+	{
+		// while (h < WIN_HEIGHT)
+		// {
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-}	t_vars;
-
-typedef struct s_complex {
-	double	re;
-	double	im;
-}	t_complex;
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-t_complex	complex_add(t_complex a, t_complex b);
-t_complex	complex_mult(t_complex a, t_complex b);
-t_complex	complex_pow(t_complex a, int pow);
-void		complex_print(t_complex a);
-
-#endif
+		// }
+		mlx_pixel_put(vars.mlx, vars.win, w, w, 0xFFFFFF);
+		w = w + 100;
+	}
+}
