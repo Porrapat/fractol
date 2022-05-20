@@ -49,33 +49,7 @@ int	main(int argc, char **argv)
 	// do grid system
 	// ...
 
-	// t_complex z;
-	// z.re = 1;
-	// z.im = 2;
-
-	// printf("%.2f %.2fi\n", z.re, z.im);
-
-		// t_vars	vars;
-
-	// t_complex c1;
-	// c1.re = 2;
-	// c1.im = -1;
-	// complex_print(c1);
-	// printf("\n");
-
 	// vars.mlx = mlx_init();
 	// vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
 	// mlx_loop(vars.mlx);
-
-	
-	// // t_complex c2;
-	// // c2.re = 1;
-	// // c2.im = 1;
-	// t_complex c3;
-	// // c3 = complex_mult(c1, c2);
-	// c3 = complex_pow(c1, 4);
-
-	// printf("%.2f+%.2fi\n", c1.re, c1.im);
-	// // printf("%.2f+%.2fi\n", c2.re, c2.im);
-	// printf("%.2f+%.2fi\n", c3.re, c3.im);
 */
