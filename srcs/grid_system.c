@@ -15,15 +15,10 @@
 void	draw_grid_system(t_vars vars)
 {
 	int	w;
-	// int	h;
 
 	w = 0;
 	while (w < WIN_WIDTH)
 	{
-		// while (h < WIN_HEIGHT)
-		// {
-
-		// }
 		mlx_pixel_put(vars.mlx, vars.win, w, w, 0xFFFFFF);
 		w = w + 100;
 	}

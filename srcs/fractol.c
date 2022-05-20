@@ -12,15 +12,12 @@
 
 #include "fractol.h"
 
-void	do_mandelbrot()
+void	do_mandelbrot(void)
 {
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
-
-	// draw_grid_system(vars);
-
 	mlx_loop(vars.mlx);
 }
 

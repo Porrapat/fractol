@@ -44,6 +44,8 @@ fclean: clean
 norm:
 	norminette srcs/math.c
 	norminette srcs/fractol.c
+	norminette srcs/graphic.c
+	norminette srcs/grid_system.c
 	norminette includes/fractol.h
 
 re: fclean all
