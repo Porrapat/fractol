@@ -23,6 +23,10 @@ SRC_DIR		=	srcs
 SRC			=	$(SRC_DIR)/fractol.c		\
 				$(SRC_DIR)/math.c			\
 				$(SRC_DIR)/graphic.c		\
+				$(SRC_DIR)/mandelbrot.c		\
+				$(SRC_DIR)/julia.c			\
+				$(SRC_DIR)/burning_ship.c	\
+				$(SRC_DIR)/roberte.c		\
 				$(SRC_DIR)/grid_system.c
 
 OBJS = $(SRCS:.c=.o)

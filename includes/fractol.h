@@ -52,6 +52,11 @@ void		draw_line_image(t_data *data, t_point p1, t_point p2, int color);
 void		white_screen(void *mlx, void *win, int w, int h);
 void		draw_grid_system(t_data *data);
 
+void		do_mandelbrot_init(void);
+void		do_julia_init(void);
+void		do_burning_ship_init(void);
+void		do_roberte_init(void);
+
 t_complex	complex_add(t_complex a, t_complex b);
 t_complex	complex_mult(t_complex a, t_complex b);
 t_complex	complex_pow(t_complex a, int pow);
