@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	white_screen(void *mlx, void *win, int w, int h)
+void	white_screen(void *mlx, void *win, int w, int h)
 {
 	int	x;
 	int	y;
