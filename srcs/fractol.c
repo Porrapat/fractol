@@ -19,13 +19,10 @@ void	check_fractal(char **argv)
 		do_mandelbrot_init();
 	else if (!ft_strncmp(argv[1], "julia", ft_strlen("julia")))
 		do_julia_init();
-		// printf("julia\n");
 	else if (!ft_strncmp(argv[1], "burning-ship", ft_strlen("burning-ship")))
 		do_burning_ship_init();
-		// printf("burning-ship\n");
 	else if (!ft_strncmp(argv[1], "roberte", ft_strlen("roberte")))
 		do_roberte_init();
-		// printf("roberte\n");
 }
 
 int	main(int argc, char **argv)

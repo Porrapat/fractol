@@ -21,6 +21,7 @@
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
+# define ITER_MAX 100
 
 typedef struct s_vars {
 	void	*mlx;
