@@ -12,17 +12,6 @@
 
 #include "fractol.h"
 
-int	set_color(int iter)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (int)(0xFF / 16 * fmod(iter, 16.0));
-	g = (int)(0xFF / 16 * fmod(iter, 16.0));
-	b = (int)(0xFF / 16 * fmod(iter, 16.0));
-	return (r << 16 | g << 8 | b);
-}
 
 int	draw_mandelbrot(int w, int h, int iter)
 {

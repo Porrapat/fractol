@@ -27,7 +27,8 @@ SRC			=	$(SRC_DIR)/fractol.c		\
 				$(SRC_DIR)/julia.c			\
 				$(SRC_DIR)/burning_ship.c	\
 				$(SRC_DIR)/roberte.c		\
-				$(SRC_DIR)/grid_system.c
+				$(SRC_DIR)/grid_system.c	\
+				$(SRC_DIR)/color.c			\
 
 OBJS = $(SRCS:.c=.o)
 

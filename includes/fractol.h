@@ -63,4 +63,6 @@ t_complex	complex_mult(t_complex a, t_complex b);
 t_complex	complex_pow(t_complex a, int pow);
 void		complex_print(t_complex a);
 
+int			set_color(int iter);
+
 #endif
